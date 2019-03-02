@@ -297,3 +297,43 @@ GROUP BY EMAIL
 DROP TABLE tempemail;
 ```
 
+**非创建临时表的方法**
+
+设定两个表别名，设定，在两个表相同的email连接起来
+
+```mysql
+SELECT e1.id, e1.EMAIl
+FROM testemail as e1, testemail as e2
+```
+
+![1551506483966](assets/1551506483966.png)
+
+```mysql
+SELECT e1.id, e1.EMAIl
+FROM testemail as e1, testemail as e2
+WHERE e1.EMAIL = e2.EMAIL
+```
+
+![1551506433062](assets/1551506433062.png)
+
+
+
+```mysql
+SELECT e1.id, e1.EMAIl
+FROM testemail as e1, testemail as e2
+WHERE e1.EMAIL = e2.EMAIL
+AND e1.id != e2.id;
+```
+
+![1551506539186](assets/1551506539186.png)
+
+```mysql
+SELECT e1.id, e1.EMAIl
+FROM testemail as e1, testemail as e2
+WHERE e1.EMAIL = e2.EMAIL
+AND e1.id > e2.id;
+```
+
+![1551506565817](assets/1551506565817.png)
+
+运用自连接的方法
