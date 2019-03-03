@@ -176,7 +176,17 @@ SELECT id as id, student FROM seat WHERE id = (SELECT COUNT(*) FROM seat)
 ORDER BY a.id
 ```
 
+```mysql
+SELECT (CASE 
+WHEN id % 2 != 0 and id != (SELECT COUNT(*) FROM seat) THEN id+1
+WHEN id % 2 != 0 and id = (SELECT COUNT(*) FROM seat) THEN id
+ELSE id - 1 END) as id,student
+FROM seat 
+ORDER BY id;
+```
+
 ### 项目九:  分数排名（难度：中等）
+
 编写一个 SQL 查询来实现分数排名。如果两个分数相同，则两个分数排名（Rank）相同。请注意，平分后的下一个名次应该是下一个连续的整数值。换句话说，名次之间不应该有“间隔”。
 创建以下score表：
 +----+-------+
